@@ -42,3 +42,14 @@ end
 puts our_select(students) {|student| student[0] == "j"}
 
 #puts students.select {|i| i[0] == "j"}
+
+def our_every(arr)
+	i = 0
+	while i <arr.length && a
+		a = !yield(arr[i])
+		i += 1
+	end
+	
+end
+#puts students
+puts our_every(students) {|student| student.is_a? String}
