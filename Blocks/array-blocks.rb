@@ -21,6 +21,13 @@ class Array
 			yield i
 		end
 	end
+
+	def recursive_map output=[],i=self.length-1,&block
+		return output if i == -1
+		output.unshift yield(self[i])
+		i -= 1
+		recursive_map(output, i, &block)
+	end
 end
 
 
@@ -55,5 +62,13 @@ describe Array do
 	it 'should be able to accept a proc object' do
 		my_proc = Proc.new { |x| x * 2 }
 		expect(initial.map(&my_proc)).to eq([2,4,6])
+	end
+
+	it 'should recursivly map an array' do
+		expect(initial.recursive_map { |x| x*2 }).to eq([2,4,6])
+	end
+
+	it 'should recursivly map an empty array' do
+		expect(empty.recursive_map { |x| x*2 }).to eq([])
 	end
 end
