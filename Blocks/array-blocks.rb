@@ -12,8 +12,13 @@ end
 
 describe Array do
 	let(:initial) { [1,2,3] }
+	let(:empty) { [] }
 
 	it 'should map an array' do
 		expect(initial.our_map { |x| x*2 }).to eq([2,4,6])
+	end
+
+	it 'should map an empty array' do
+		expect(empty.our_map { |x| x*2 }).to eq([])
 	end
 end
