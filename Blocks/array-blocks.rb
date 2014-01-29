@@ -6,6 +6,15 @@ class Array
 		end
 		output
 	end
+
+	def our_select
+		output, i = [], 0
+		while i < self.length
+			output << self [i] if yield(self[i])
+			i += 1
+		end
+		output
+	end
 end
 
 
@@ -20,5 +29,13 @@ describe Array do
 
 	it 'should map an empty array' do
 		expect(empty.our_map { |x| x*2 }).to eq([])
+	end
+
+	it 'should select objects in an array' do
+		expect(initial.our_select { |x| x.odd? }).to eq([1,3])
+	end
+
+	it 'should select an empty array' do
+		expect(empty.our_select { |x| x.odd? }).to eq([])
 	end
 end
