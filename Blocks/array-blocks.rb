@@ -53,6 +53,7 @@ describe Array do
 	end
 
 	it 'should be able to accept a proc object' do
-		
+		my_proc = Proc.new { |x| x * 2 }
+		expect(initial.map(&my_proc)).to eq([2,4,6])
 	end
 end
