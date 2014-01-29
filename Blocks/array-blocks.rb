@@ -23,10 +23,13 @@ class Array
 	end
 
 	def recursive_map output=[],i=self.length-1,&block
-		return output if i == -1
+		return output if -1 == i
 		output.unshift yield(self[i])
-		i -= 1
-		recursive_map(output, i, &block)
+		recursive_map(output, i-1, &block)
+	end
+
+	def recursive_map output=[],i=self.length,&block
+		i == 0 ? output : recursive_map(output.unshift(yield(self[i-1])), i-1, &block)
 	end
 end
 
