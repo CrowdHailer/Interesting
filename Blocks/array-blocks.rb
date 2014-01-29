@@ -15,6 +15,12 @@ class Array
 		end
 		output
 	end
+
+	def our_each
+		for i in self do 
+			yield i
+		end
+	end
 end
 
 
@@ -37,5 +43,16 @@ describe Array do
 
 	it 'should select an empty array' do
 		expect(empty.our_select { |x| x.odd? }).to eq([])
+	end
+
+	it 'should be able to access every element' do
+		dummy = double :bogus
+		array = [dummy, dummy]
+		expect(dummy).to receive(:doIt).twice
+		array.our_each { |e| e.doIt }
+	end
+
+	it 'should be able to accept a proc object' do
+		
 	end
 end
